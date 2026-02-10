@@ -1,6 +1,0 @@
-love load
-
-object player:
-	player.x, player.y, player.w, player.h
-
-for  up down left right do the associated movement action
