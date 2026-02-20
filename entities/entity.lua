@@ -12,3 +12,11 @@ end
 function Entity:destroy()
   self.alive = false
 end
+
+function Entity:update()
+  for _, comp in pairs(self.components) do
+    if comp.update then
+      comp:update()
+    end
+  end
+end
