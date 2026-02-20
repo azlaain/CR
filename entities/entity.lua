@@ -20,3 +20,5 @@ function Entity:update()
     end
   end
 end
+
+return Entity
