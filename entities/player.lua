@@ -1,8 +1,8 @@
 
-local StateMachine = require("statemachine")
+-- local StateMachine = require("statemachine")
 local Entity = require("entities.entity") -- using the entity class from entity.lua
-local IdleState = require("states.IdleState")
-local MoveState = require("states.MoveState")
+-- local IdleState = require("states.IdleState")
+-- local MoveState = require("states.MoveState")
 
 
 
@@ -19,19 +19,19 @@ function Player:new(x,y)
   obj.x = x or 0
   obj.y = y or 0
   -- defining player-specific properties (will be used for drawing and collision)
-  obj.width = 32
-  obj.height = 32
-  obj.speed = 200
+  obj.width = 40
+  obj.height = 40
+  obj.walkSpeed = 200
   obj.facing = -1
   obj.gravity = 500
   obj.jumpSpeed = -300
   obj.inventory = {}
-  -- attaching the statemachine
+  obj.vx = 0
+  obj.vy = 0
+  -- -- attaching the statemachine
 
-  obj.stateMachine = StateMachine:new(obj)
-  obj.stateMachine:change(IdleState)
-
-  
+  -- obj.stateMachine = StateMachine:new(obj)
+  -- obj.stateMachine:change(IdleState)  
   return obj
 end
 
