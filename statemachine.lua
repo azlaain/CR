@@ -14,6 +14,9 @@ function StateMachine:change(state)
   if self.current.enter then
     self.current:enter(self.owner)
   end
+  if self.current.exit then
+    self.current:exit(self.owner)
+  end
 end
 
 function StateMachine:update(dt)

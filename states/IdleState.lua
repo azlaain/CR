@@ -5,13 +5,14 @@ IdleState = {}
 IdleState.__index = IdleState
 
 function IdleState:update(player,dt)
-
-  if love.keyboard.isDown("left", "right") then
+ if input.left then
+    player.vx = -player.speed
     player.stateMachine:change(MoveState)
-
-  -- elseif love.keyboard.isDown("i", "j", "k","l") then
-  --   player.stateMachine:change(AttackState)
-  end
+ end
+ if input.right then
+    player.vx = player.speed
+    player.stateMachine:change(MoveState)
+ end
 end
 
 return IdleState
