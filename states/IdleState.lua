@@ -1,15 +1,12 @@
-local MoveState = require("states.MoveState")
-
-
 IdleState = {}
 IdleState.__index = IdleState
 
 function IdleState:update(player,dt)
- if input.left then
+ if Input.left then
     player.vx = -player.speed
     player.stateMachine:change(MoveState)
  end
- if input.right then
+ if Input.right then
     player.vx = player.speed
     player.stateMachine:change(MoveState)
  end

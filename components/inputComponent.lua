@@ -20,3 +20,4 @@ function Input:update()
   self.down = love.keyboard.isDown("s")
 end
 
+return Input

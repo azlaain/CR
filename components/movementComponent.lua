@@ -16,3 +16,5 @@ function Movement:update(dt)
   player.vy = player.vy + self.gravity * dt
   
 end
+
+return Movement
