@@ -28,13 +28,11 @@ function Player:new(x,y)
   self.vy = 0
   self.isGrounded = false
 
-
 -- calling all of the components n such
-  
-  self.stateMachine = StateMachine:new(self)
-  self.stateMachine:change(IdleState)
-  self.Input = Input:new()
-  self.Movement = Movement:new()
+  self.components.StateMachine = StateMachine:new(self)
+  self.components.StateMachine:change(IdleState)
+  self.components.Input = Input:new()
+  self.components.Movement = Movement:new()
   return self
 end
 
