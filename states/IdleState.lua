@@ -1,4 +1,3 @@
-local input = player.components.Input
 IdleState = {}
 IdleState.__index = IdleState
 
@@ -12,14 +11,15 @@ end
 
 
 function IdleState:update(player,dt)
+   local input = player.components.Input
  if input.left then
     player.vx = -player.speed
-    player.stateMachine:change(MoveState)
+    player.components.StateMachine:change(MoveState)
     print("moving left!")
  end
  if input.right then
     player.vx = player.speed
-    player.stateMachine:change(MoveState)
+    player.components.StateMachine:change(MoveState)
    print("moving right!")
  end
 end

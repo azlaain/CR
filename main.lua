@@ -1,4 +1,3 @@
-
 local Player = require("entities.player")
 local entities = {}
 

@@ -11,6 +11,7 @@ function Input:new()
   self.k = false
   self.s = false
   self.hs = false
+  return self
 end
 
 function Input:update()
