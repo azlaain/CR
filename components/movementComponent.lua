@@ -7,6 +7,7 @@ function Movement:new(player)
   self.gravity = 900
   self.terminalVelocity = 800
   self.groundY = 300
+  self.speed = 100
 end
 
 
