@@ -24,6 +24,18 @@ function Player:new(x,y)
   self.vy = 0
   self.isGrounded = false
 
+-- physics stuff
+  self.physics = {}
+
+  
+  -- self.physics.body = love.physics.newBody(World, self.x, self.y, "dynamic")
+  self.physics.body:setFixedRotation(true) -- prevent player from rotatingi
+  
+  self.physics.shape = love.physics.newRectangleShape(self.width, self.height)
+  self.physics.fixture = love.physics.newFixture(self.physics.body, self.physics.shape)
+  
+  self.physics.body:setGravityScale(1) -- prevent player from falling
+
 
   -- component stuff
 

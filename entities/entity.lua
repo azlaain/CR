@@ -13,10 +13,10 @@ function Entity:destroy()
   self.alive = false
 end
 
-function Entity:update()
+function Entity:update(dt)
   for _, comp in pairs(self.components) do
     if comp.update then
-      comp:update()
+      comp:update(dt)
     end
   end
 end

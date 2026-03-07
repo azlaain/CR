@@ -22,6 +22,8 @@ self.current = newState
   if self.current and self.current.enter then
     self.current:enter(self.owner)
   end
+
+  print(self.current)
 end
 
 function StateMachine:update(dt)
