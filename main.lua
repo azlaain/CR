@@ -10,7 +10,7 @@ function love.load()
   Map = STI("map/1.lua", {"box2d"})
   World = love.physics.newWorld(0, 0)
   Map:box2d_init(World)
-  Map.layers.solid.visible = false
+  Map.layers.solid.visible = true
   -- staticbody = love.physics.newBody(physics.world, 20, 420, "static")
   -- rectangle = love.physics.newRectangleShape(1000, 20)
   -- staticFixture = love.physics.newFixture(staticbody, rectangle, 1)

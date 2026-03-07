@@ -7,7 +7,7 @@ function physicsComponent:init(player)
   self.body:setFixedRotation(true)
   self.shape = love.physics.newRectangleShape(player.width, player.height)
   self.fixture = love.physics.newFixture(self.body, self.shape)
-
+  self.player = player
 
   
   
@@ -17,8 +17,8 @@ end
 
 
 
-function physicsComponent:update()
-   self.x, self.y = self.body:getPosition()
+function physicsComponent:update(dt)
+   player.x, player.y = self.body:getPosition()
    self.body:setLinearVelocity(player.components.Movement.vx, player.components.Movement.vy)
 
 end

@@ -11,7 +11,7 @@ function Movement:new(player)
   self.acceleration = 4000
   self.friciton = 2500 
   self.vx = 0
-  self.vy = 0
+  self.vy = 200
   return self
 end
 

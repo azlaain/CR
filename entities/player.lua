@@ -45,7 +45,7 @@ function Player:new(x,y)
   -- self.components.StateMachine:change(IdleState)
 
   -- self.components.Input = Input:new()
-  -- self.components.Movement = Movement:new()
+  self.components.Movement = Movement:new()
 
   return self
 end
