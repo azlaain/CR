@@ -11,7 +11,7 @@ function Movement:new(player)
   self.acceleration = 4000
   self.friciton = 2500 
   self.vx = 0
-  self.vy = 200
+  self.vy = 0
   return self
 end
 
@@ -19,9 +19,7 @@ end
 
 
 function Movement:update(dt)
-  -- player.vy = player.vy + self.gravity * dt
-  -- player.x = player.x + player.vx * dt
-  -- player.y = player.y + player.vy * dt
+  self.vy = self.vy + self.gravity * dt
 end
 
 return Movement

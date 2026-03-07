@@ -1,16 +1,15 @@
-
 local StateMachine = require("statemachine")
 local Entity = require("entities.entity")
 local IdleState = require("states.IdleState")
-local Movement = require("components.movementComponent")
+local Movement = require("components.playerMovement")
 local Input = require("components.inputComponent")
 local Physics = require("components.physicsComponent")
 
 
 
-local Player = setmetatable({}, {__index = Entity})
+local Player = setmetatable({}, { __index = Entity })
 Player.__index = Player
-function Player:new(x,y)
+function Player:new(x, y)
   local self = setmetatable({}, self)
 
 
@@ -27,15 +26,15 @@ function Player:new(x,y)
   self.inventory = {}
   self.isGrounded = false
 
--- physics stuff
+  -- physics stuff
 
-  
+
   -- self.physics.body = love.physics.newBody(World, self.x, self.y, "dynamic")
   -- self.physics.body:setFixedRotation(true) -- prevent player from rotatingi
-  
+
   -- self.physics.shape = love.physics.newRectangleShape(self.width, self.height)
   -- self.physics.fixture = love.physics.newFixture(self.physics.body, self.physics.shape)
-  
+
 
 
   -- component stuff
@@ -44,23 +43,19 @@ function Player:new(x,y)
   -- self.components.StateMachine = StateMachine:new(self)
   -- self.components.StateMachine:change(IdleState)
 
-  -- self.components.Input = Input:new()
+  self.components.Input = Input:new()
   self.components.Movement = Movement:new()
 
   return self
 end
 
-
-
 function Player:syncPhysics()
-   self.x, self.y = self.physics.body:getPosition()
-   self.physics.body:setLinearVelocity(self.xVel, self.yVel)
+  self.x, self.y = self.physics.body:getPosition()
+  self.physics.body:setLinearVelocity(self.xVel, self.yVel)
 end
 
-
-
 function Player:draw()
-  love.graphics.rectangle("fill", self.x, self.y, self.width, self.height)
+  love.graphics.rectangle("fill", self.x - self.width / 2, self.y - self.height / 2 + CameraY, self.width, self.height)
 end
 
 return Player
