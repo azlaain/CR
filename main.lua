@@ -43,7 +43,7 @@ end
 
 
 function love.draw()
-  Map:draw(0, 0, 0)
+  Map:draw(0, (40 - (13 * 32)) * 32, 2, 2)
     -- love.graphics.rectangle("fill", player.x, player.y, player.width, player.height)
     -- love.graphics.rectangle("fill", 20, 420, 1000, 20)
 end

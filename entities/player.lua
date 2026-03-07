@@ -28,7 +28,7 @@ function Player:new(x,y)
   self.physics = {}
 
   
-  -- self.physics.body = love.physics.newBody(World, self.x, self.y, "dynamic")
+  self.physics.body = love.physics.newBody(World, self.x, self.y, "dynamic")
   self.physics.body:setFixedRotation(true) -- prevent player from rotatingi
   
   self.physics.shape = love.physics.newRectangleShape(self.width, self.height)
