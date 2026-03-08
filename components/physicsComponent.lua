@@ -9,18 +9,12 @@ function physicsComponent:init(player)
   self.fixture = love.physics.newFixture(self.body, self.shape)
   self.player = player
 
-  
-  
   return self
 end
-
-
-
 
 function physicsComponent:update(dt)
    player.x, player.y = self.body:getPosition()
    self.body:setLinearVelocity(player.components.Movement.vx, player.components.Movement.vy)
-
 end
 
 return physicsComponent
