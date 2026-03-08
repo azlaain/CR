@@ -6,7 +6,9 @@ function physicsComponent:init(player)
   self.body = love.physics.newBody(World, player.x, player.y, "dynamic")
   self.body:setFixedRotation(true)
   self.shape = love.physics.newRectangleShape(player.width, player.height)
+  -- self.shape = love.physics.newCircleShape(player.width/2)
   self.fixture = love.physics.newFixture(self.body, self.shape)
+  self.fixture:setFriction(0)
   self.player = player
 
   return self

@@ -27,16 +27,6 @@ function Player:new(x, y)
   self.isGrounded = false
 
   -- physics stuff
-
-
-  -- self.physics.body = love.physics.newBody(World, self.x, self.y, "dynamic")
-  -- self.physics.body:setFixedRotation(true) -- prevent player from rotatingi
-
-  -- self.physics.shape = love.physics.newRectangleShape(self.width, self.height)
-  -- self.physics.fixture = love.physics.newFixture(self.physics.body, self.physics.shape)
-
-
-
   -- component stuff
   self.components.Physics = Physics:init(self)
 
@@ -44,7 +34,7 @@ function Player:new(x, y)
   -- self.components.StateMachine:change(IdleState)
 
   self.components.Input = Input:new()
-  self.components.Movement = Movement:new()
+  self.components.Movement = Movement:new(self.player)
 
   return self
 end

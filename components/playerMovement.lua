@@ -14,26 +14,68 @@ function playerMovement:new(player)
 end
 
 
-function playerMovement:update(dt)
-  print("hi")
-  if love.keyboard.isDown("a") then
-    print("left")
+function Movement:update(dt)
+  self.vy = self.vy + self.gravity * dt
+
+
+
+
+  
+  if love.keyboard.isDown("d") then
+    print("right")
     if self.vx < self.terminalVelocity then
+      print("check1")
       if self.vx + self.acceleration * dt < self.terminalVelocity then
         self.vx = self.vx + self.acceleration * dt
+        print("check2")
       else
        self.vx = self.terminalVelocity
+      end
     end
-  end
-  elseif love.keyboard.isDown("d") then
-  print("right")
+
+
+  
+  elseif love.keyboard.isDown("a") then
+  print("left")
     if self.vx > -self.terminalVelocity then
       if self.vx +self.acceleration * dt > - self.terminalVelocity then
         self.vx = self.vx - self.acceleration * dt
       else
         self.vx = self.terminalVelocity
+      end
     end
+    else
+      self:applyFriction(dt)
+    
+    end
+
+
+end
+
+
+function playerMovement:applyFriction(dt)
+
+
+  -- apply friction
+  if self.vx > 0 then
+    if self.vx - self.friction * dt > 0 then
+      self.vx = self.vx - self.friction * dt
+    else
+      self.vx = 0
+    end
+    elseif self.vx < 0 then
+     if self.vx + self.friction * dt < 0 then
+       self.vx = self.vx + self.friction * dt
+     else
+       self.vx = 0
+     end
   end
+
+
+
 end
-end
+
+
+
 return playerMovement
+
