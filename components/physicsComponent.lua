@@ -19,4 +19,32 @@ function physicsComponent:update(dt)
    self.body:setLinearVelocity(player.components.Movement.vx, player.components.Movement.vy)
 end
 
+function physicsComponent:beginContact(a, b, collision)
+  if player.components.playerMovement.isGrounded == true then return end
+  local mx, my = collision:getNormal()
+  if a == self.fixture then
+    if my > 0 then
+      physicsComponent:land()
+    end
+  elseif b == self.fixture then
+    if my < 0 then
+      physicsComponent:land()
+    end
+  end
+end
+
+function physicsComponent:land()
+  player.components.playerMovement.vy = 0
+  player.components.playerMovement.isGrounded = true
+end
+
+
+
+
+function physicsComponent:endContact(a, b, collision)
+
+end
+
+
+
 return physicsComponent
