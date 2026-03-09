@@ -12,13 +12,7 @@ end
 
 
 function MoveState:update(player, dt)
-  local input = player.components.input
-  if input.left then
-    player.vx = -player.components.Movement.speed
-  elseif input.right then
-    player.vx = player.components.Movement.speed
-  print(player.vx)
-  else
+  if not input.left or input.right then
    player.stateMachine:change(IdleState)
   end
 end

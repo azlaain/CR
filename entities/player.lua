@@ -25,13 +25,13 @@ function Player:new(x, y)
   self.jumpSpeed = -300
   self.inventory = {}
   self.isGrounded = false
+  self.jumpHeight = -400
 
   -- physics stuff
   -- component stuff
   self.components.Physics = Physics:init(self)
 
-  -- self.components.StateMachine = StateMachine:new(self)
-  -- self.components.StateMachine:change(IdleState)
+  self.components.StateMachine = StateMachine:new(self.player)
 
   self.components.Input = Input:new()
   self.components.Movement = Movement:new(self.player)

@@ -1,35 +1,71 @@
 local StateMachine = {}
 StateMachine.__index = StateMachine
+local wKeyPressed = false
 
-function StateMachine:new(owner)
+function StateMachine:new(player)
   local self = setmetatable({}, self)
-  self.owner = owner
-  self.current = nil
+
+  self.wkeypressed = false
+  self.player = player
+  self.idle = false
+  self.jumping = false
+  self.moving = false
+  self.attacking = false
+  self.hit = false
+
   return self
 end
 
-
-function StateMachine:change(newState)
-
-
-  if self.current and self.current.exit then
-    self.current:exit(self.owner)
-  end
-
-self.current = newState
-
-
-  if self.current and self.current.enter then
-    self.current:enter(self.owner)
-  end
-
-  print(self.current)
-end
-
 function StateMachine:update(dt)
-  if self.current and self.current.update then
-    self.current:update(self.owner, dt)
+  self:changeMoving(dt)
+  self:changeIdle(dt)
+  self:changeJumping(dt)
+  -- self:testFunction(dt)
+end
+
+
+
+
+function StateMachine:changeMoving(dt)
+   -- local input = player.components.Input
+ if love.keyboard.isDown("a") then
+    self.moving = true
+    print("moving left!")
+ end
+ if love.keyboard.isDown("d") then
+   self.moving = true
+   print("moving right!")
+ end
+end
+
+function StateMachine:changeIdle(dt)
+   if not (love.keyboard.isDown("a") or love.keyboard.isDown("d")) then
+     self.moving = false
+     self.idle = true
   end
 end
+
+function StateMachine:changeJumping(dt)
+    if player.isGrounded == false and wKeyPressed == true then
+    self.jumping = true
+    print(self.jumping)
+
+    wKeyPressed = false
+    end
+  end
+
+function love.keypressed(key, scancode, isrepeat)
+   if key == "w" then
+     wKeyPressed = true
+   end
+end
+
+
+
+
+-- function StateMachine:testFunction(dt)
+--   print(player.isGrounded)  
+-- end
+
 
 return StateMachine

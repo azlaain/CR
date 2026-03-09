@@ -20,31 +20,39 @@ function physicsComponent:update(dt)
 end
 
 function physicsComponent:beginContact(a, b, collision)
-  if player.components.playerMovement.isGrounded == true then return end
+  if player.isGrounded == true then return end
   local mx, my = collision:getNormal()
   if a == self.fixture then
     if my > 0 then
-      physicsComponent:land()
+      physicsComponent:land(collision)
     end
   elseif b == self.fixture then
     if my < 0 then
-      physicsComponent:land()
+      physicsComponent:land(collision)
     end
   end
 end
 
-function physicsComponent:land()
-  player.components.playerMovement.vy = 0
-  player.components.playerMovement.isGrounded = true
+function physicsComponent:land(collision)
+  -- print("groundCheck1")
+  -- print(player.isGrounded)
+  self.currentGroundCollision = collision
+  player.components.Movement.vy = 0
+  player.isGrounded = true
+  -- print("groundCheck2")
+  -- print(player.isGrounded)
 end
 
 
 
 
 function physicsComponent:endContact(a, b, collision)
-
+  if a == self.fixture or b == self.fixture then
+    if self.currentGroundCollision == collision then
+      player.isGrounded = false
+    end
+  end
 end
-
 
 
 return physicsComponent

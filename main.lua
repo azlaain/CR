@@ -4,6 +4,8 @@ local STI = require("sti")
 
 
 function love.load()
+  sol = love.graphics.newImage("FreeKnight_v1/Colour1/Outline/120x80_PNGSheets/_Idle.png")
+  top_left = love.graphics.newQuad(0, 0, 0, 0, sol)
   Map = STI("map/1.lua", { "box2d" })
   World = love.physics.newWorld(0, 0)
   World:setCallbacks(beginContact, endContact)
@@ -26,10 +28,11 @@ end
 function love.draw()
   Map:draw(0, CameraY, 1, 1)
   player:draw()
+  love.graphics.draw(sol, top_left, CameraY, 0)
 end
 
 function beginContact(a, b, collision)
-  Player.components.physicsComponent:beginContact(a,b,collision)
+  player.components.Physics:beginContact(a,b,collision)
 
 
 
@@ -38,8 +41,5 @@ end
 
 
 function endContact(a, b, collision)
-  player.components.physicsComponent:endContact(a,b,collision)
-
-
-
+  player.components.Physics:endContact(a,b,collision)
 end
